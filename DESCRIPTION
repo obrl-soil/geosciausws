@@ -1,0 +1,17 @@
+Package: geosciausws
+Type: Package
+Title: Provides access to public WCS services offered by Geoscience Australia
+Version: 0.1.0
+Authors@R: c(person("Lauren", "O'Brien", email = "obrlsoilau@gmail.com", 
+    role = c('aut', 'cre')))
+Description: Provides access to public WCS services offered by Geoscience Australia.
+License: MIT + file LICENSE
+Depends:
+    R (>= 2.10)
+Imports:
+    httr,
+    raster,
+    sf
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
