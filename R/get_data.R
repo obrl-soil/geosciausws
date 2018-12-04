@@ -34,15 +34,23 @@ get_ga_data <- function(product   = NULL,
                              httr::write_disk(out_temp)))
 
   # pull back in and tidy up
-  r <- raster::raster(out_temp)
-  # CHECK NEEDS ABOVE - nb not all services have nvl defined ;_;
+  # still need to decide on NA handling
+  r <- if(product %in% c('AUS_BASE', 'AUS_NATMAP')) {
+    raster::brick(out_temp) # multiband data
+  } else {
+    raster::raster(out_temp)
+  }
 
   # write final product to working directory if directed
   if(write_out == TRUE) {
     out_dest <- file.path(getwd(), paste0('GA_', product, '.tif'))
     raster::writeRaster(r, out_dest, datatype = 'FLT4S',
                           NAflag = -9999, overwrite = TRUE)
-    raster::raster(out_dest)
+    if(product %in% c('AUS_BASE', 'AUS_NATMAP')) {
+      raster::brick(out_dest)
+    } else {
+      raster::raster(out_dest)
+    }
   } else {
     r
   }
