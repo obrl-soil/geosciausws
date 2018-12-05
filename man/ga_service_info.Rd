@@ -4,10 +4,13 @@
 \name{ga_service_info}
 \alias{ga_service_info}
 \title{GA Service Information}
-\format{A data frame with 1 observations and 14 variables \describe{
+\format{A data frame with 22 observations and 17 variables \describe{
+\item{Type}{Product Type}
 \item{Name}{Product Name}
 \item{Short_Name}{Product short name}
 \item{Service}{Product code}
+\item{Layer}{Layer Number (within service)}
+\item{Bands}{Number of bands within layer}
 \item{xmin}{left bounding longitude in decimal degrees}
 \item{xmax}{right bounding longitude in decimal degrees}
 \item{ymin}{bottom latitude in decimal degrees}

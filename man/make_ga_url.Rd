@@ -18,7 +18,7 @@ or `raster` object.}
 \item{req_type}{Character; one of 'cap', 'cov' or 'desc'. Defaults to 'cov'.}
 }
 \description{
-Generate the WCS GetCoverage URL for a particular product available from
+Generate the WCS GetCoverage URL for data products available from
 Geoscience Australia.
 }
 \keyword{internal}

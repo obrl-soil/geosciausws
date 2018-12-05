@@ -1,6 +1,6 @@
 #' Make GeoScience Australia URL
 #'
-#' Generate the WCS GetCoverage URL for a particular product available from
+#' Generate the WCS GetCoverage URL for data products available from
 #' Geoscience Australia.
 #'
 #' @param product Character, one of the options from column 'Short_Name' in
@@ -40,10 +40,13 @@ make_ga_url <- function(product = NULL, aoi = NULL, req_type = 'cov') {
     )
   }
 
+  layer <- ga_service_info$Layer[which(ga_service_info$Short_Name == product)]
+
   if(req_type == 'desc') {
     return(
       paste0(url_root, service_root,
-             "REQUEST=DescribeCoverage&SERVICE=WCS&VERSION=1.0.0&COVERAGE=1")
+             "REQUEST=DescribeCoverage&SERVICE=WCS&VERSION=1.0.0&COVERAGE=",
+             layer)
     )
   }
 
@@ -57,7 +60,7 @@ make_ga_url <- function(product = NULL, aoi = NULL, req_type = 'cov') {
   rows <- round(abs(aoi[2] - aoi[4]) / res[2])
 
   paste0(url_root, service_root,
-         "REQUEST=GetCoverage&SERVICE=WCS&VERSION=1.0.0&COVERAGE=1",
+         "REQUEST=GetCoverage&SERVICE=WCS&VERSION=1.0.0&COVERAGE=", layer,
          "&CRS=EPSG:4283&BBOX=", paste(aoi, collapse = ','),
          "&WIDTH=", cols,
          "&HEIGHT=", rows,
