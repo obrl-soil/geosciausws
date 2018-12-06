@@ -240,26 +240,3 @@ validate_aoi <- function(aoi = NULL, product = NULL) {
   # Align extent to source to avoid server-side interpolation and grid shift
   align_aoi(aoi = ext, product = product)
   }
-
-#### MAY NOT NEED THIS ###
-##' Validate soils product/attribute combination
-##'
-##' Check whether the requested soils attribute is available for the requested
-##' soils product.
-##'
-##' @param product Character, one of the options from column 'Code' in
-##'   code{\link[geosciausws:ga_service_info]{ga_service_info}}.
-##' @param attribute Character, one of the options from column 'Code' in
-##'   code{\link[geosciausws:ga_attribute_info]{ga_attribute_info}}.
-##' @return Logical; TRUE if available
-##' @keywords internal
-##'
-#check_avail <- function(product = NULL, attribute = NULL) {
-#
-#  ga_attribute_info <- NULL
-#  utils::data('ga_attribute_info', envir = environment())
-#
-#  ga_attribute_info[which(ga_attribute_info$Code == attribute), product]
-#
-#}
-#
