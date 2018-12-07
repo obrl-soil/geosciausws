@@ -4,7 +4,7 @@
 \name{ga_service_info}
 \alias{ga_service_info}
 \title{GA Service Information}
-\format{A data frame with 22 observations and 17 variables \describe{
+\format{A data frame with 27 observations and 17 variables \describe{
 \item{Type}{Product Type}
 \item{Name}{Product Name}
 \item{Short_Name}{Product short name}

@@ -42,8 +42,6 @@ test_that(
     val1 <- geosciausws:::align_aoi(aoi, 'SRTM_DEMS'),
     expect_is(val1, 'bbox'),
     expect_equal(attr(val1, 'crs')$epsg, 4283),
-    expect_is(val2, 'bbox'),
-    expect_equal(attr(val2, 'crs')$epsg, 4283),
     expect_equivalent(val1[1], 143.749861113513248),
     expect_equivalent(val1[2], -40.170138900522332),
     expect_equivalent(val1[3], 144.180138891284230),
@@ -70,31 +68,18 @@ test_that(
 test_that(
   'validate_aoi functions as expected',
   c(
-    aoi <- structure(c(143.75, -40.17, 144.18, -39.57),
+    aoi <- structure(c(153.12, -26.81, 153.15, -26.78),
                      names = c("xmin", "ymin", "xmax", "ymax"),
                      class = "bbox", crs = sf::st_crs(4283)),
     val1 <- geosciausws:::validate_aoi(aoi, 'SRTM_DEMS'),
     expect_is(val1, 'bbox'),
     expect_equal(attr(val1, 'crs')$epsg, 4283),
     expect_error(geosciausws:::validate_aoi(aoi, 'SA')),
-    aoi_simple <- c(143.75, -40.17, 144.18, -39.57),
+    aoi_simple <- c(153.12, -26.81, 153.15, -26.78),
     val2 <- geosciausws:::validate_aoi(aoi_simple, 'SRTM_DEMS'),
     expect_equal(val1, val2),
     aoi_raster <- raster::extent(sf::st_sf(sf::st_as_sfc(val1), 4283)),
     val4 <- geosciausws:::validate_aoi(aoi_raster, 'SRTM_DEMS'),
-    expect_equal(val1, val4)#,
-    #library(raster),
-    #data('ki_surface_clay'),
-    #val5 <- geosciausws:::validate_aoi(ki_surface_clay, 'NAT'),
-    #val6 <- geosciausws:::validate_aoi(raster::extent(ki_surface_clay), 'NAT'),
-    #expect_equivalent(val5, val6),
-    #expect_error(geosciausws:::validate_aoi('1', 'NAT')),
-    #val7 <- sf::st_as_sfc(aoi, crs = 4283),
-    #expect_equal(geosciausws:::validate_aoi(val7, 'NAT'), val1),
-    #val8 <- st_bbox(sf::st_transform(sf::st_as_sfc(aoi, crs = 4283), 28356)),
-    #val9 <- val8,
-    #attr(val9, 'crs')$epsg <- NA,
-    #expect_equal(geosciausws:::validate_aoi(val8, 'NAT'), geosciausws:::validate_aoi(val9, 'NAT')),
-    #expect_equal(geosciausws:::validate_aoi(val9, 'NAT'), geosciausws:::validate_aoi(val9, 'NAT'))
+    expect_equal(val1, val4)
   )
 )
